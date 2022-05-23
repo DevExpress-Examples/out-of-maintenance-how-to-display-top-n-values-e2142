@@ -5,17 +5,27 @@
         xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid"
         Title="MainWindow" Height="350" Width="525"  Loaded="Window_Loaded">
     <Grid Margin="7">
-        <dxpg:PivotGridControl HorizontalAlignment="Left" Name="pivotGridControl1"
-                               VerticalAlignment="Top">
+        <dxpg:PivotGridControl Name="pivotGridControl1" DataProcessingEngine="Optimized">
             <dxpg:PivotGridControl.Fields>
-                <dxpg:PivotGridField x:Name="fieldCountry" FieldName="Country" Area="RowArea"/>
-                <dxpg:PivotGridField x:Name="fieldCustomer" FieldName="Sales Person" Area="RowArea"
+                <dxpg:PivotGridField x:Name="fieldCountry" Area="RowArea">
+                    <dxpg:PivotGridField.DataBinding>
+                        <dxpg:DataSourceColumnBinding ColumnName="Country"/>
+                    </dxpg:PivotGridField.DataBinding>
+                </dxpg:PivotGridField>
+                <dxpg:PivotGridField x:Name="fieldCustomer"  Area="RowArea"
                                      SortByField="{Binding ElementName=fieldExtendedPrice}"
                                      Caption="Customer" TopValueCount="3"
                                      TopValueShowOthers="True"
-                                     SortOrder="Descending"/>
-                <dxpg:PivotGridField x:Name="fieldExtendedPrice" FieldName="Extended Price"
-                                     Area="DataArea" CellFormat="c0" />
+                                     SortOrder="Descending">
+                    <dxpg:PivotGridField.DataBinding>
+                        <dxpg:DataSourceColumnBinding ColumnName="Sales Person"/>
+                    </dxpg:PivotGridField.DataBinding>
+                </dxpg:PivotGridField>
+                <dxpg:PivotGridField x:Name="fieldExtendedPrice" Area="DataArea" CellFormat="c0" >
+                    <dxpg:PivotGridField.DataBinding>
+                        <dxpg:DataSourceColumnBinding ColumnName="Extended Price"/>
+                    </dxpg:PivotGridField.DataBinding>
+                </dxpg:PivotGridField>
             </dxpg:PivotGridControl.Fields>
         </dxpg:PivotGridControl>
     </Grid>
